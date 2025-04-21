@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -114,10 +115,7 @@ public class ScriptPacker: ProjectJob
         string resolveAutoOutputDirectory()
         {
             console.Trace("Determining the output directory automatically...");
-            if (!OperatingSystem.IsWindows())
-                throw new CommandLineException(-1, "The auto output option is only supported on Windows.");
-            var se = new SpaceEngineers();
-            var output = se.GetDataPath("IngameScripts", "local");
+            var output = GetSpaceEngineersDataPath();
             if (string.IsNullOrEmpty(output))
                 throw new CommandLineException(-1, "Failed to determine the output directory.");
             console.Trace("Output directory: " + output);
@@ -135,7 +133,32 @@ public class ScriptPacker: ProjectJob
 
         return await PackProjectAsync(project, context);
     }
-    
+
+    string GetSpaceEngineersDataPath()
+    {
+        if (OperatingSystem.IsWindows())
+        {
+            var se = new SpaceEngineers();
+            return se.GetDataPath("IngameScripts", "local");
+        } else if (OperatingSystem.IsLinux())
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                FileName = "find",
+                Arguments = "/home/{$USER} -name IngameScripts",
+                RedirectStandardOutput = true,
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            using var process = Process.Start(startInfo);
+            if (process == null) throw new CommandLineException(-1, "Failed to find IngameScripts folder.");
+            process.WaitForExit();
+            return process.StandardOutput.ReadToEnd();
+            
+        }
+        throw new CommandLineException(-1, $"Unable to get IngameScripts path on platform: ({Environment.OSVersion.Platform.ToString()})"); 
+    }
+
     static void ApplyDefaultMacros(Parameters parameters)
     {
         if (!parameters.PackVerb.Macros.ContainsKey("$MDK_DATETIME$"))
