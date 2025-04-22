@@ -3,13 +3,13 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Versioning;
 
-namespace Mdk.CommandLine
+namespace Mdk.CommandLine.Utility
 {
     /// <summary>
     /// Utility service to retrieve information about Space Engineers (copyright Keen Software House, no affiliation)
     /// </summary>
     [SupportedOSPlatform("windows")]
-    class SpaceEngineers
+    class SpaceEngineers : ISpaceEngineers
     {
         /// <summary>
         /// The <see cref="Steam"/> service

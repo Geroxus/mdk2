@@ -7,6 +7,7 @@ using Mdk.CommandLine.CommandLine;
 using Mdk.CommandLine.Mod.Pack.Jobs;
 using Mdk.CommandLine.Shared;
 using Mdk.CommandLine.Shared.Api;
+using Mdk.CommandLine.Utility;
 // using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.MSBuild;

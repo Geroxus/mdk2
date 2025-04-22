@@ -116,7 +116,7 @@ public class ScriptPacker: ProjectJob
         string resolveAutoOutputDirectory()
         {
             console.Trace("Determining the output directory automatically...");
-            var output = SpaceEngineersPathFinder.DataPath();
+            var output = SpaceEngineersFactory.Get().GetDataPath();
             if (string.IsNullOrEmpty(output))
                 throw new CommandLineException(-1, "Failed to determine the output directory.");
             console.Trace("Output directory: " + output);
