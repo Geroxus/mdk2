@@ -10,6 +10,7 @@ using Mdk.CommandLine.IngameScript.Pack.Api;
 using Mdk.CommandLine.Shared;
 using Mdk.CommandLine.Shared.Api;
 using Mdk.CommandLine.Utility;
+using Mdk2.Shared.Utility;
 // using Microsoft.Build.Locator;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
@@ -116,7 +117,7 @@ public class ScriptPacker: ProjectJob
         string resolveAutoOutputDirectory()
         {
             console.Trace("Determining the output directory automatically...");
-            var output = SpaceEngineersFactory.Get().GetDataPath();
+            var output = UtilityFactory.MakeSpaceEngineers().GetDataPath();
             if (string.IsNullOrEmpty(output))
                 throw new CommandLineException(-1, "Failed to determine the output directory.");
             console.Trace("Output directory: " + output);

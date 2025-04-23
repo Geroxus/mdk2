@@ -3,10 +3,35 @@ using System.IO;
 
 namespace Mdk2.References.Utility
 {
+    internal interface ISpaceEngineers
+    {
+        /// <summary>
+        ///     Attempts to get the install path of Space Engineers.
+        /// </summary>
+        /// <param name="subfolders">The desired subfolder path, if any</param>
+        /// <param name="installPath"></param>
+        /// <returns></returns>
+        bool TryGetInstallPath(string subfolders, out string installPath);
+
+        /// <summary>
+        ///     Attempts to get the install path of Space Engineers.
+        /// </summary>
+        /// <param name="installPath"></param>
+        /// <returns></returns>
+        bool TryGetInstallPath(out string installPath);
+
+        /// <summary>
+        ///     Attempts to get the default data path for Space Engineers.
+        /// </summary>
+        /// <param name="subfolders">The desired subfolder path, if any</param>
+        /// <returns></returns>
+        string GetDataPath(string subfolders = null);
+    }
+
     /// <summary>
     ///     Utility service to retrieve information about Space Engineers (copyright Keen Software House, no affiliation)
     /// </summary>
-    class SpaceEngineers
+    class SpaceEngineers : ISpaceEngineers
     {
         /// <summary>
         ///     The Steam App ID of Space Engineers

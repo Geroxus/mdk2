@@ -6,8 +6,7 @@ using System.Runtime.Versioning;
 using System.Text.RegularExpressions;
 using Microsoft.Win32;
 
-namespace Mdk.CommandLine;
-
+namespace Mdk2.Shared.Utility{
 /// <summary>
 ///     A service to retrieve information about the current Steam (copyright Valve, no affiliation) installation.
 /// </summary>
@@ -171,4 +170,5 @@ class Steam
                 return null;
         }
     }
+}
 }

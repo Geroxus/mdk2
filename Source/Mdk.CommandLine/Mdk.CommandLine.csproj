@@ -14,7 +14,7 @@
         <Configurations>Release;Debug</Configurations>
         <Platforms>x64</Platforms>
         <PublishSingleFile>false</PublishSingleFile>
-        <SelfContained>false</SelfContained>
+        <SelfContained>true</SelfContained>
         <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
     </PropertyGroup>
 
@@ -44,5 +44,7 @@
     <ItemGroup>
       <None Remove="SourceGeneratorSupport\**" />
     </ItemGroup>
+
+    <Import Project="..\Mdk.Shared.Utility\Mdk.Shared.Utility.projitems" Label="Shared" />
 
 </Project>
