@@ -4,14 +4,15 @@ using System.Runtime.Versioning;
 
 namespace Mdk2.Shared.Utility
 {
-    [SupportedOSPlatform("linux")]
     internal class SpaceEngineersLinux : ISpaceEngineers
     {
-        public string? GetInstallPath(params string[]? subfolders) => GetOnLinux("SpaceEngineers/Bin64");
+        public string GetInstallPath() => GetInstallPath(new string[] { });
 
-        public string GetDataPath(params string[]? subfolders) => GetOnLinux("SpaceEngineers/IngameScripts/local");
+        public string GetInstallPath(params string[] subfolders) => FindStartAtHome("SpaceEngineers/Bin64");
 
-        private static string GetOnLinux(string findPath)
+        public string GetDataPath(params string[] subfolders) => FindStartAtHome("SpaceEngineers/IngameScripts/local");
+
+        private static string FindStartAtHome(string findPath)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo
             {

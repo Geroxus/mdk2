@@ -6,6 +6,7 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using Mdk2.References.Utility;
+using Mdk2.Shared.Utility;
 using Microsoft.Build.Framework;
 using Microsoft.Build.Utilities;
 
@@ -44,8 +45,9 @@ namespace Mdk2.References
 
             try
             {
-                DataPath = SpaceEngineersPathFinder.DataPath();
-                BinaryPath = SpaceEngineersPathFinder.BinaryPath();
+                ISpaceEngineers se = UtilityFactory.MakeSpaceEngineers();
+                DataPath = se.GetDataPath();
+                BinaryPath = se.GetInstallPath();
             }
             catch (Exception e)
             {
