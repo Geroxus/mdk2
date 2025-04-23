@@ -10,7 +10,7 @@
         <Version>$([System.IO.File]::ReadAllText("$(MSBuildProjectDirectory)/PackageVersion.txt"))</Version>
         <InformationalVersion>$(Version)</InformationalVersion>
         <PublishSingleFile>true</PublishSingleFile>
-        <SelfContained>false</SelfContained>
+        <SelfContained>true</SelfContained>
         <RuntimeIdentifiers>win-x64;linux-x64</RuntimeIdentifiers>
     </PropertyGroup>
 
