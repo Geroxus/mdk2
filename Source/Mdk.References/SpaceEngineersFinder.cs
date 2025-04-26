@@ -45,7 +45,7 @@ namespace Mdk2.References
 
             try
             {
-                ISpaceEngineers se = UtilityFactory.MakeSpaceEngineers();
+                ISpaceEngineers se = SpaceEngineersFactory.Create();
                 DataPath = se.GetDataPath();
                 BinaryPath = se.GetInstallPath();
             }

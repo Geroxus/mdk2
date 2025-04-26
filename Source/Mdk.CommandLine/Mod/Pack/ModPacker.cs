@@ -118,7 +118,7 @@ public class ModPacker : ProjectJob
             console.Trace("Determining the output directory automatically...");
             if (!OperatingSystem.IsWindows())
                 throw new CommandLineException(-1, "The auto output option is only supported on Windows.");
-            var se = UtilityFactory.MakeSpaceEngineers();
+            var se = SpaceEngineersFactory.Create();
             var output = se.GetDataPath("Mods");
             if (string.IsNullOrEmpty(output))
                 throw new CommandLineException(-1, "Failed to determine the output directory.");

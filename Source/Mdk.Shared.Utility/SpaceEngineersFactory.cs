@@ -3,9 +3,9 @@ using System.Runtime.InteropServices;
 
 namespace Mdk2.Shared.Utility
 {
-    public static class UtilityFactory
+    public static class SpaceEngineersFactory
     {
-        public static ISpaceEngineers MakeSpaceEngineers()
+        public static ISpaceEngineers Create()
         {
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
             {
